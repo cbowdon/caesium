@@ -3,7 +3,20 @@
   (:import (org.abstractj.kalium.keys KeyPair
                                       PublicKey
                                       PrivateKey)
-           org.abstractj.kalium.crypto.Box))
+           org.abstractj.kalium.crypto.Box
+           (org.abstractj.kalium NaCl
+                                 NaCl$Sodium)))
+
+
+(defn public-key-length
+  "The expected length of a public-key byte array."
+  []
+  NaCl$Sodium/PUBLICKEY_BYTES)
+
+(defn secret-key-length
+  "The expected length of a secret-key byte array."
+  []
+  NaCl$Sodium/SECRETKEY_BYTES)
 
 (defn generate-keypair
   "Generate a secret-key and corresponding public-key with `crypto_box_curve25519xsalsa20poly1305_keypair`.

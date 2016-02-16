@@ -6,13 +6,19 @@
 ;; This is a function rather than a constant because they might change and
 ;; libsodium provides lookup functions. Although kalium doesn't use these yet,
 ;; if they do switch in future then this prevents a breaking change.
-(defn opslimit-interactive []
+(defn opslimit-interactive
+  "The suggested opslimit for interactive applications."
+  []
   NaCl$Sodium/PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE)
 
-(defn memlimit-interactive []
+(defn memlimit-interactive
+  "The suggested memlimit for interactive applications."
+  []
   NaCl$Sodium/PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE)
 
-(defn salt-length []
+(defn salt-length
+  "The expected length of a salt byte array."
+  []
   32) ;; This is hard-coded until kalium exposes it
 
 (defn derive-key

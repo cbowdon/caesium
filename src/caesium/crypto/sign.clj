@@ -1,6 +1,13 @@
 (ns caesium.crypto.sign
   (:import (org.abstractj.kalium.keys SigningKey
-                                      VerifyKey)))
+                                      VerifyKey)
+           (org.abstractj.kalium NaCl
+                                 NaCl$Sodium)))
+
+(defn signature-length
+  "The length of the signature byte array."
+  []
+  NaCl$Sodium/SIGNATURE_BYTES)
 
 (defn generate-signing-keys
   "Generate a public-key and secret-key for signing with `crypto_sign_ed25519_seed_keypair`. If a seed is not provided, one is taken from `randombytes`.

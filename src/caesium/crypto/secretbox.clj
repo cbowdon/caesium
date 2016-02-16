@@ -1,6 +1,18 @@
 (ns caesium.crypto.secretbox
   "Bindings to the secretbox secret-key authenticated encryption scheme."
-  (:import [org.abstractj.kalium.crypto SecretBox]))
+  (:import org.abstractj.kalium.crypto.SecretBox
+           (org.abstractj.kalium NaCl
+                                 NaCl$Sodium)))
+
+(defn key-length
+  "The expected key byte array length."
+  []
+  NaCl$Sodium/XSALSA20_POLY1305_SECRETBOX_KEYBYTES)
+
+(defn nonce-length
+  "The expected nonce byte array length."
+  []
+  NaCl$Sodium/XSALSA20_POLY1305_SECRETBOX_NONCEBYTES)
 
 (defn encrypt
   "Encrypt with `secretbox`.
